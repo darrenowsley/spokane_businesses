@@ -1,0 +1,88 @@
+>>>markdown
+Darren Owsley, MBSUS 622 - Spokane Business Data
+>>>malloy
+source: naics_code is duckdb.table('./naics.csv') extend {
+    rename: Business_Type is title
+    primary_key: ncode
+}
+
+source: businesses is duckdb.table('./SpokaneCounty-Businesses.csv') extend {
+  
+    rename: ctype is `Customer Type`
+
+    dimension: Commence_Date is strptime!date(`Commence Date`, '%b-%d-%Y')
+    dimension: ReOpen_Date is strptime!date(`Reopen Date`, '%b-%d-%Y')
+    
+    measure: naics_count is count()
+
+    join_one: naics_code with NAICS
+}
+>>>malloy
+run: businesses -> {
+    group_by:  ctype
+    aggregate: naics_count is count()
+}
+>>>markdown
+Number and type of businesses by year
+>>>malloy
+run: businesses -> {
+    group_by:  naics_code.Business_Type
+    aggregate: naics_count is count()
+    nest: customer_by_type is {
+        group_by: ctype
+        aggregate: naics_count is count()
+    }
+}
+>>>markdown
+Businesses opened this year by year and business type
+>>>malloy
+run: businesses -> {
+    group_by:  Commence_Date.year
+    nest: business_by_year is {
+       group_by:  naics_code.Business_Type
+       aggregate: naics_count
+       where: Commence_Date = @2025
+    }
+}
+>>>markdown
+Business trend from 2014 - 2024
+>>>malloy
+run: businesses -> {
+    group_by:  naics_code.Business_Type
+    aggregate: naics_count
+    # line_chart
+    nest: business_trend is {
+       group_by:  Commence_Date.year
+       aggregate: naics_count
+       where: Commence_Date > @2014 and Commence_Date <= @2024 
+    }
+}
+>>>markdown
+Businesses that reopened
+>>>malloy
+run: businesses -> {
+    group_by:  Commence_Date.year
+    --aggregate: naics_count
+    where: ReOpen_Date is not null
+    nest: Businesses_that_reopened is {
+       group_by:  naics_code.Business_Type, Commence_Date, ReOpen_Date
+    }
+}
+>>>markdown
+Mailing addresses outside of Washington state.
+>>>malloy
+run: businesses -> {
+    group_by:  `Mailing State`
+    aggregate: naics_count
+    where: `Mailing State` != 'WASHINGTON'
+    nest: Businesses_that_reopened is {
+       group_by:  naics_code.Business_Type, Commence_Date
+    }
+}
+>>>malloy
+# line_chart
+run: businesses -> {
+    group_by:  Commence_Date.year
+    aggregate: naics_count
+    where: Commence_Date > @2014 and Commence_Date <= @2024 
+}
