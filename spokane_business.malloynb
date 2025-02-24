@@ -1,10 +1,7 @@
 >>>markdown
-<<<<<<< HEAD
 MBSUS 622 - Spokane Business Data
-=======
 
 Darren Owsley, MBSUS 622 - Spokane Business Data
->>>>>>> ca79afdf1a1538957951894ea8f32f2ae77d1c75
 >>>malloy
 
 source: naics_code is duckdb.table('./naics.csv') extend {
@@ -113,15 +110,11 @@ run: businesses -> {
 
 ###### Cost Savings: Setting up a business entity or a mailing address in certain states can be more cost-effective due to cheaper rates for business services, lower business filing fees, or lower property taxes. Businesses sometimes choose states with lower operating costs as part of an overall strategy to reduce expenses.
 >>>malloy
-<<<<<<< HEAD
 # dashboard
-=======
 
->>>>>>> ca79afdf1a1538957951894ea8f32f2ae77d1c75
 run: businesses -> {
     aggregate: `Businesses Registered outside of Washington` is naics_count
     where: `Mailing State` != 'WASHINGTON'
-<<<<<<< HEAD
     nest: `Businesses Registration Outside of WA` is {
        group_by:  `Business Type` is naics_code.Business_Type
        aggregate: `Businesses Opened` is naics_count
@@ -144,11 +137,9 @@ run: businesses -> {
         aggregate: `Number of Businesses Opened` is naics_count
         where: Commence_Date.year <= @2024 and Commence_Date >= @2020
         order_by: `Year Opened` asc
-=======
     nest: Businesses_that_reopened is {
        group_by:  naics_code.Business_Type, Commence_Date
        limit: 3
->>>>>>> ca79afdf1a1538957951894ea8f32f2ae77d1c75
     }
 }
 >>>malloy
