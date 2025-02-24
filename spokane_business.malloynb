@@ -1,6 +1,10 @@
 >>>markdown
+<<<<<<< HEAD
+MBSUS 622 - Spokane Business Data
+=======
 
 Darren Owsley, MBSUS 622 - Spokane Business Data
+>>>>>>> ca79afdf1a1538957951894ea8f32f2ae77d1c75
 >>>malloy
 
 source: naics_code is duckdb.table('./naics.csv') extend {
@@ -95,16 +99,56 @@ run: businesses -> {
     }
 }
 >>>markdown
-Mailing addresses outside of Washington state.
->>>malloy
+##### When businesses in Spokane, Washington, have mailing addresses outside of the state of Washington, it could be due to several reasons, including:
 
+###### Tax Advantages: Some businesses may establish mailing addresses in states with more favorable tax conditions. For example, states with no state income tax (like Nevada or Wyoming) might offer financial incentives for businesses to register or establish a presence there. By doing so, they could minimize state-level taxes or take advantage of other tax benefits.
+
+###### Registered Agents: In some cases, businesses choose to use a registered agent service, which is often located outside the state of operation. These services help businesses maintain compliance with local laws and regulations, receive legal documents, and forward mail. This can be more efficient for businesses that operate in multiple states or even internationally.
+
+###### Business Structure: Some businesses, especially larger corporations or franchises, may be structured to operate under a parent company or umbrella organization located in another state. This can be part of a broader corporate strategy that involves creating multiple legal entities in different locations, often for regulatory or operational efficiency.
+
+###### Mailing Address for Privacy or Convenience: Some businesses prefer to keep their operational address private and may choose to use a mailing address in a different state, particularly if they are primarily an online business or do not have a brick-and-mortar location. This could be for privacy or to simplify operations.
+
+###### Multi-State Operations: If the business operates in multiple states, they might use a central address in a state where they have a significant presence or where business operations are centralized, even if their physical storefront or office is in Spokane.
+
+###### Cost Savings: Setting up a business entity or a mailing address in certain states can be more cost-effective due to cheaper rates for business services, lower business filing fees, or lower property taxes. Businesses sometimes choose states with lower operating costs as part of an overall strategy to reduce expenses.
+>>>malloy
+<<<<<<< HEAD
+# dashboard
+=======
+
+>>>>>>> ca79afdf1a1538957951894ea8f32f2ae77d1c75
 run: businesses -> {
-    group_by:  `Mailing State`
-    aggregate: naics_count
+    aggregate: `Businesses Registered outside of Washington` is naics_count
     where: `Mailing State` != 'WASHINGTON'
+<<<<<<< HEAD
+    nest: `Businesses Registration Outside of WA` is {
+       group_by:  `Business Type` is naics_code.Business_Type
+       aggregate: `Businesses Opened` is naics_count
+    }
+    # shape_map
+    nest: `By State (Data is from 2014-2025)` is {
+        group_by:  `State` is `Mailing State`
+        aggregate: `Business Count` is naics_count
+    }
+    # line_chart
+    nest: `Business Trend - Overall businesses with mailing addresses outside of Washington have been trending up. There was a small decline since Covid.` is {
+        group_by:  `Year Opened` is Commence_Date.year
+        aggregate: `Number of Businesses Opened` is naics_count
+        where: Commence_Date.year <= @2024 
+    }
+
+    # bar_chart
+    nest: `Business Trend since COVID` is {
+        group_by:  `Year Opened` is Commence_Date.year
+        aggregate: `Number of Businesses Opened` is naics_count
+        where: Commence_Date.year <= @2024 and Commence_Date >= @2020
+        order_by: `Year Opened` asc
+=======
     nest: Businesses_that_reopened is {
        group_by:  naics_code.Business_Type, Commence_Date
        limit: 3
+>>>>>>> ca79afdf1a1538957951894ea8f32f2ae77d1c75
     }
 }
 >>>malloy
