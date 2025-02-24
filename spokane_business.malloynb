@@ -1,6 +1,12 @@
 >>>markdown
+<<<<<<< HEAD
 MBSUS 622 - Spokane Business Data
+=======
+
+Darren Owsley, MBSUS 622 - Spokane Business Data
+>>>>>>> ca79afdf1a1538957951894ea8f32f2ae77d1c75
 >>>malloy
+
 source: naics_code is duckdb.table('./naics.csv') extend {
     rename: Business_Type is title
     primary_key: ncode
@@ -12,19 +18,37 @@ source: businesses is duckdb.table('./SpokaneCounty-Businesses.csv') extend {
 
     dimension: Commence_Date is strptime!date(`Commence Date`, '%b-%d-%Y')
     dimension: ReOpen_Date is strptime!date(`Reopen Date`, '%b-%d-%Y')
+    dimension: location_city_clean is 
+        pick 'SPOKANE VALLEY' when `Location City` = 'CITY OF SPOKANE VALLEY'
+        pick 'SPOKANE VALLEY' when `Location City` = 'SPOKANE VLY'
+        pick 'SPOKANE VALLEY' when `Location City` = 'SPOKANE VALEY'
+        pick 'SPOKANE VALLEY' when `Location City` = 'SPOKANE VALLELY'
+        pick 'SPOKANE VALLEY' when `Location City` = 'VALLEY'
+        pick 'CHENEY' when `Location City` = 'CHEANEY'
+        pick 'LIBERTY LAKE' when `Location City` = 'LIBERY LAKE'
+        pick 'NINE MILE FALLS' when `Location City` = 'NINE MILE FLS'
+        pick 'FAIRCHILD AIR FORCE BASE' when `Location City` = 'FAIRCHILD AFB'
+        pick 'ELK' when `Location City` = 'ELK, WA.'
+        pick 'SPOKANE' when `Location City` = 'SPOAKNE'
+        pick 'SPOKANE' when `Location City` = 'SPOKEANE'
+        else `Location City`
+
     
     measure: naics_count is count()
 
     join_one: naics_code with NAICS
 }
 >>>malloy
+
 run: businesses -> {
     group_by:  ctype
     aggregate: naics_count is count()
 }
 >>>markdown
+
 Number and type of businesses by year
 >>>malloy
+
 run: businesses -> {
     group_by:  naics_code.Business_Type
     aggregate: naics_count is count()
@@ -34,8 +58,10 @@ run: businesses -> {
     }
 }
 >>>markdown
+
 Businesses opened this year by year and business type
 >>>malloy
+
 run: businesses -> {
     group_by:  Commence_Date.year
     nest: business_by_year is {
@@ -45,8 +71,10 @@ run: businesses -> {
     }
 }
 >>>markdown
+
 Business trend from 2014 - 2024
 >>>malloy
+
 run: businesses -> {
     group_by:  naics_code.Business_Type
     aggregate: naics_count
@@ -58,8 +86,10 @@ run: businesses -> {
     }
 }
 >>>markdown
+
 Businesses that reopened
 >>>malloy
+
 run: businesses -> {
     group_by:  Commence_Date.year
     --aggregate: naics_count
@@ -83,10 +113,15 @@ run: businesses -> {
 
 ###### Cost Savings: Setting up a business entity or a mailing address in certain states can be more cost-effective due to cheaper rates for business services, lower business filing fees, or lower property taxes. Businesses sometimes choose states with lower operating costs as part of an overall strategy to reduce expenses.
 >>>malloy
+<<<<<<< HEAD
 # dashboard
+=======
+
+>>>>>>> ca79afdf1a1538957951894ea8f32f2ae77d1c75
 run: businesses -> {
     aggregate: `Businesses Registered outside of Washington` is naics_count
     where: `Mailing State` != 'WASHINGTON'
+<<<<<<< HEAD
     nest: `Businesses Registration Outside of WA` is {
        group_by:  `Business Type` is naics_code.Business_Type
        aggregate: `Businesses Opened` is naics_count
@@ -109,12 +144,31 @@ run: businesses -> {
         aggregate: `Number of Businesses Opened` is naics_count
         where: Commence_Date.year <= @2024 and Commence_Date >= @2020
         order_by: `Year Opened` asc
+=======
+    nest: Businesses_that_reopened is {
+       group_by:  naics_code.Business_Type, Commence_Date
+       limit: 3
+>>>>>>> ca79afdf1a1538957951894ea8f32f2ae77d1c75
     }
 }
 >>>malloy
+
 # line_chart
 run: businesses -> {
     group_by:  Commence_Date.year
     aggregate: naics_count
     where: Commence_Date > @2014 and Commence_Date <= @2024 
+}
+>>>markdown
+Business types by Location City (only WA)
+>>>malloy
+run: businesses -> {
+    group_by: location_city_clean
+    aggregate: num_business is count()
+    where: `Location State` = 'WASHINGTON'
+    nest: top_naics is {
+        group_by:  naics_code.Business_Type
+        aggregate: naics_count 
+        limit: 3
+    }
 }
