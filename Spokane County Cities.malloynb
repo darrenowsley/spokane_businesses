@@ -1,5 +1,5 @@
 >>>markdown
-Business by Spokane County Cities
+Business by Spokane County Cities:
 ###### Spokane, being the largest city in the county, is the region's healthcare hub. Spokane has seen an increase in tech startups, software development firms, and IT services. The city is investing in fostering innovation, with resources like the Spokane Entrepreneurial Center and tech incubators. As the central business district, Spokane is home to numerous retail stores, restaurants, and entertainment venues. Tourism has been rising, contributing to the growth of the hospitality sector.
 
 ###### Spokane Valley has become a hotspot for manufacturing, particularly in industries like aerospace, metalworking, and machinery production. The area is home to many distribution centers due to its proximity to highways and the Spokane International Airport. With its strategic location near major transportation routes, Spokane Valley is seeing growth in e-commerce businesses, particularly in logistics and fulfillment operations. 
@@ -20,8 +20,8 @@ import "businesses.malloy"
 
 # dashboard
 run: businesses -> {
-    nest: `City Businesses in Spokane County` is {
-        group_by: `Spokane County’s cities reflect a diverse and growing economy, with trends driven by healthcare, manufacturing, technology, real estate development, and small business growth across different sectors. Each city within the county has its unique strengths and opportunities that contribute to the region’s overall economic landscape.` is location_city_clean
+    nest: `City Businesses in Spokane County - Spokane County’s cities reflect a diverse and growing economy, with trends driven by healthcare, manufacturing, technology, real estate development, and small business growth across different sectors. Each city within the county has its unique strengths and opportunities that contribute to the region’s overall economic landscape.` is {
+        group_by: `City` is location_city_clean
         aggregate: ` ` is naics_count
     }
 
@@ -51,5 +51,10 @@ run: businesses -> {
             group_by: `Business Type` is naics_code.Business_Type
             aggregate: `Count` is naics_count
         }
+    }
+
+    nest: `LLCs are popular in Spokane, Washington, because they offer liability protection, flexibility in management and taxation, and are easy to form and maintain. With Washington's lack of individual income tax, LLC owners benefit from pass-through taxation. The state's business-friendly environment and Spokane's growing entrepreneurial ecosystem make LLCs ideal for small businesses and startups. Additionally, LLCs are commonly used in Spokane’s real estate sector to protect personal assets while managing properties.` is {
+        group_by:  `Business Type` is ctype
+        aggregate: `Count` is naics_count
     }
 }

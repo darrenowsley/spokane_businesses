@@ -1,5 +1,5 @@
 >>>markdown
-##### Business-Friendly Environment: 
+Business-Friendly Environment: 
 ###### Washington is known for its favorable business climate, including no state income tax. This can be very appealing for businesses from neighboring states like California and Idaho, where taxes might be higher. Companies might choose to register in Washington to take advantage of these tax benefits.
 
 ###### Proximity to Major Markets: Washington is located near large markets, especially in the tech and manufacturing industries, including the Seattle metro area, which is home to major companies like Microsoft, Amazon, and Boeing. Businesses from California (especially in tech) might want to register in Washington to be closer to these opportunities or take advantage of the networking and business growth potential.
@@ -62,6 +62,12 @@ run: businesses -> {
         where: Commence_Date.year <= @2024 and Commence_Date >= @2020
         and `Mailing State` != 'WASHINGTON'
         order_by: `Year Opened` asc
+    }
+
+    nest: `LLCs are popular in Spokane, Washington, because they offer liability protection, flexibility in management and taxation, and are easy to form and maintain. With Washington's lack of individual income tax, LLC owners benefit from pass-through taxation. The state's business-friendly environment and Spokane's growing entrepreneurial ecosystem make LLCs ideal for small businesses and startups. Additionally, LLCs are commonly used in Spokane’s real estate sector to protect personal assets while managing properties.` is {
+        group_by:  `Business Type` is ctype
+        aggregate: `Count` is naics_count
+        where: `Mailing State` != 'WASHINGTON'
     }
 }
 >>>markdown
