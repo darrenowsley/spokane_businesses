@@ -1,40 +1,7 @@
->>>markdown
-
-Darren Owsley, MBSUS 622 - Spokane Business Data
+>>>malloy
+import "businesses.malloy"
 >>>malloy
 
-source: naics_code is duckdb.table('./naics.csv') extend {
-    rename: Business_Type is title
-    primary_key: ncode
-}
-
-source: businesses is duckdb.table('./SpokaneCounty-Businesses.csv') extend {
-  
-    rename: ctype is `Customer Type`
-
-    dimension: Commence_Date is strptime!date(`Commence Date`, '%b-%d-%Y')
-    dimension: ReOpen_Date is strptime!date(`Reopen Date`, '%b-%d-%Y')
-    dimension: location_city_clean is 
-        pick 'SPOKANE VALLEY' when `Location City` = 'CITY OF SPOKANE VALLEY'
-        pick 'SPOKANE VALLEY' when `Location City` = 'SPOKANE VLY'
-        pick 'SPOKANE VALLEY' when `Location City` = 'SPOKANE VALEY'
-        pick 'SPOKANE VALLEY' when `Location City` = 'SPOKANE VALLELY'
-        pick 'SPOKANE VALLEY' when `Location City` = 'VALLEY'
-        pick 'CHENEY' when `Location City` = 'CHEANEY'
-        pick 'LIBERTY LAKE' when `Location City` = 'LIBERY LAKE'
-        pick 'NINE MILE FALLS' when `Location City` = 'NINE MILE FLS'
-        pick 'FAIRCHILD AIR FORCE BASE' when `Location City` = 'FAIRCHILD AFB'
-        pick 'ELK' when `Location City` = 'ELK, WA.'
-        pick 'SPOKANE' when `Location City` = 'SPOAKNE'
-        pick 'SPOKANE' when `Location City` = 'SPOKEANE'
-        else `Location City`
-
-    
-    measure: naics_count is count()
-
-    join_one: naics_code with NAICS
-}
->>>malloy
 
 run: businesses -> {
     group_by:  ctype
@@ -42,8 +9,10 @@ run: businesses -> {
 }
 >>>markdown
 
+
 Number and type of businesses by year
 >>>malloy
+
 
 run: businesses -> {
     group_by:  naics_code.Business_Type
@@ -55,8 +24,10 @@ run: businesses -> {
 }
 >>>markdown
 
+
 Businesses opened this year by year and business type
 >>>malloy
+
 
 run: businesses -> {
     group_by:  Commence_Date.year
@@ -68,8 +39,10 @@ run: businesses -> {
 }
 >>>markdown
 
+
 Business trend from 2014 - 2024
 >>>malloy
+
 
 run: businesses -> {
     group_by:  naics_code.Business_Type
@@ -83,8 +56,10 @@ run: businesses -> {
 }
 >>>markdown
 
+
 Businesses that reopened
 >>>malloy
+
 
 run: businesses -> {
     group_by:  Commence_Date.year
@@ -95,8 +70,10 @@ run: businesses -> {
     }
 }
 >>>markdown
+
 Mailing addresses outside of Washington state.
 >>>malloy
+
 
 run: businesses -> {
     group_by:  `Mailing State`
@@ -109,6 +86,7 @@ run: businesses -> {
 }
 >>>malloy
 
+
 # line_chart
 run: businesses -> {
     group_by:  Commence_Date.year
@@ -116,8 +94,10 @@ run: businesses -> {
     where: Commence_Date > @2014 and Commence_Date <= @2024 
 }
 >>>markdown
+
 Business types by Location City (only WA)
 >>>malloy
+
 run: businesses -> {
     group_by: location_city_clean
     aggregate: num_business is count()
@@ -129,3 +109,4 @@ run: businesses -> {
     }
 }
 >>>malloy
+

@@ -1,7 +1,11 @@
 >>>markdown
+
 ## Looking at Corporation Types
 >>>malloy
+
 --Looking at the spread of Corporation Types
+import "businesses.malloy"
+
 run: businesses -> {
     group_by: ctype
     aggregate: counted is count()
@@ -45,6 +49,7 @@ run: businesses -> {
     }
 }
 >>>malloy
+
 --Looking at the data through the covid lense
 # line_chart
 run: businesses -> {
@@ -69,6 +74,7 @@ run: businesses -> {
     }
 }
 >>>malloy
+
 run: naics_code -> {
     group_by: Business_Type
     aggregate: counted is count()

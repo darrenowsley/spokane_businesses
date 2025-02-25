@@ -1,0 +1,39 @@
+source: naics_code is duckdb.table('./naics.csv') extend {
+    rename: Business_Type is title
+    primary_key: ncode
+}
+
+source: states is duckdb.table('./states.csv') extend {
+    primary_key: ustate
+}
+
+source: businesses is duckdb.table('./SpokaneCounty-Businesses.csv') extend {
+  
+    rename: ctype is `Customer Type`
+
+    dimension: Commence_Date is strptime!date(`Commence Date`, '%b-%d-%Y')
+    dimension: ReOpen_Date is strptime!date(`Reopen Date`, '%b-%d-%Y')
+    dimension: location_city_clean is 
+        pick 'SPOKANE VALLEY' when `Location City` = 'CITY OF SPOKANE VALLEY'
+        pick 'SPOKANE VALLEY' when `Location City` = 'SPOKANE VLY'
+        pick 'SPOKANE VALLEY' when `Location City` = 'SPOKANE VALEY'
+        pick 'SPOKANE VALLEY' when `Location City` = 'SPOKANE VALLELY'
+        pick 'SPOKANE VALLEY' when `Location City` = 'VALLEY'
+        pick 'CHENEY' when `Location City` = 'CHEANEY'
+        pick 'LIBERTY LAKE' when `Location City` = 'LIBERY LAKE'
+        pick 'NINE MILE FALLS' when `Location City` = 'NINE MILE FLS'
+        pick 'FAIRCHILD AIR FORCE BASE' when `Location City` = 'FAIRCHILD AFB'
+        pick 'ELK' when `Location City` = 'ELK, WA.'
+        pick 'SPOKANE' when `Location City` = 'SPOAKNE'
+        pick 'SPOKANE' when `Location City` = 'SPOKEANE'
+        else `Location City`
+
+    dimension: outofstate is 
+          pick 'Washington' when `Mailing State` = 'WASHINGTON'
+          else 'Out of State'
+
+    measure: naics_count is count()
+
+    join_one: naics_code with NAICS
+    join_one: states with `Mailing State`
+}
