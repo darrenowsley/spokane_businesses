@@ -1,0 +1,55 @@
+>>>markdown
+Business by Spokane County Cities
+###### Spokane, being the largest city in the county, is the region's healthcare hub. Spokane has seen an increase in tech startups, software development firms, and IT services. The city is investing in fostering innovation, with resources like the Spokane Entrepreneurial Center and tech incubators. As the central business district, Spokane is home to numerous retail stores, restaurants, and entertainment venues. Tourism has been rising, contributing to the growth of the hospitality sector.
+
+###### Spokane Valley has become a hotspot for manufacturing, particularly in industries like aerospace, metalworking, and machinery production. The area is home to many distribution centers due to its proximity to highways and the Spokane International Airport. With its strategic location near major transportation routes, Spokane Valley is seeing growth in e-commerce businesses, particularly in logistics and fulfillment operations. 
+
+###### Airway Heights is home to large aerospace manufacturers like the Spokane-based company, Triumph Composite Systems. The aerospace sector is a key driver of business activity in this area. Airway Heights is also seeing an expansion in retail, with new stores and shopping centers opening to accommodate the growing population and tourists.
+
+######  Liberty Lake is known for being a business-friendly city with a growing tech sector, attracting companies in software development, IT, and cybersecurity. It’s also a desirable location for tech employees due to its suburban feel and proximity to Spokane. Liberty Lake has become a hot spot for small businesses, particularly in sectors like professional services, health and wellness, and retail. 
+
+###### Millwood has a history of being home to small-scale manufacturing and light industry. While not as large as other areas, it still attracts businesses involved in local manufacturing and production. Millwood is seeing a rise in businesses related to local services, including retail, healthcare, and hospitality, driven by its growing residential community.
+
+###### Cheney is home to Eastern Washington University (EWU), which drives a significant portion of the local economy. The university creates opportunities in education, research, and student-oriented services and businesses.
+
+###### Deer Park, located to the north of Spokane, is part of the agricultural region of the county. Agribusinesses, including farms, food processing, and related industries, play a significant role in the local economy.
+
+###### In the more rural parts of Spokane County, agriculture remains a cornerstone of the economy, with many businesses focused on crop production, livestock, and agribusiness.
+>>>malloy
+import "businesses.malloy"
+
+# dashboard
+run: businesses -> {
+    nest: `City Businesses in Spokane County` is {
+        group_by: `Spokane County’s cities reflect a diverse and growing economy, with trends driven by healthcare, manufacturing, technology, real estate development, and small business growth across different sectors. Each city within the county has its unique strengths and opportunities that contribute to the region’s overall economic landscape.` is location_city_clean
+        aggregate: ` ` is naics_count
+    }
+
+    # line_chart
+    nest: `City Trend` is { 
+        group_by: Commence_Date.year
+        aggregate: `Business` is naics_count
+        group_by: `City` is location_city_clean
+        where: Commence_Date.year <= @2024 
+    }
+ 
+    nest: `By City (Data is from 1937-2025)` is {
+        group_by:  `City` is location_city_clean
+        aggregate: `Business Count` is naics_count
+
+        # line_chart
+        nest: `Trend by City` is {
+        group_by:  Commence_Date.year
+        aggregate: naics_count
+        }
+    }
+
+    nest: `Businesses Registration by City` is {
+        group_by: `City` is location_city_clean
+        aggregate: `Businesses Opened` is naics_count
+        nest: `Business Type` is {
+            group_by: `Business Type` is naics_code.Business_Type
+            aggregate: `Count` is naics_count
+        }
+    }
+}
