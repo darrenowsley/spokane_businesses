@@ -16,8 +16,8 @@ import "businesses.malloy"
 
 # dashboard
 run: businesses -> {
-    nest: `Out of State Businesses in Spokane County` is {
-        group_by: `Businesses with Mailing Addresses outside of Washington - Business-Friendly Environment: Washington is known for its favorable business climate, including no state income tax. This can be very appealing for businesses from neighboring states like California and Idaho, where taxes might be higher. Companies might choose to register in Washington to take advantage of these tax benefits.` is outofstate
+    nest: `Out of State Businesses in Spokane County - Businesses with Mailing Addresses outside of Washington - Business-Friendly Environment: Washington is known for its favorable business climate, including no state income tax. This can be very appealing for businesses from neighboring states like California and Idaho, where taxes might be higher. Companies might choose to register in Washington to take advantage of these tax benefits.` is {
+        group_by: `State` is outofstate
         aggregate: ` ` is naics_count
     }
 

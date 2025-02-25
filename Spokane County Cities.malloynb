@@ -26,14 +26,14 @@ run: businesses -> {
     }
 
     # line_chart
-    nest: `City Trend` is { 
+    nest: `City Trend - In the 1990s, Spokane began to see a diversification of its economy, with a particular focus on the tech and healthcare industries. The expansion of institutions like Providence Health and Spokane's emergence as a regional hub for healthcare services attracted new businesses in the health sector.` is { 
         group_by: Commence_Date.year
         aggregate: `Business` is naics_count
         group_by: `City` is location_city_clean
         where: Commence_Date.year <= @2024 
     }
  
-    nest: `By City (Data is from 1937-2025)` is {
+    nest: `Trend By City (Data is from 1937-2025)` is {
         group_by:  `City` is location_city_clean
         aggregate: `Business Count` is naics_count
 
