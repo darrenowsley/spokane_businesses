@@ -84,27 +84,6 @@ run: businesses -> {
     }
 }
 
-# 2. This query helps analyze businesses grouped by their mailing city and identifies the top 3 business types with the longest average operating periods before ceasing operations.
-
-run: businesses -> {
-    group_by: City is `Mailing City`
-    
-    -- Visual Representation: Bar Chart
-    # bar_chart {y.independent} {size=spark}
-
-    -- Businesses with the Longest Operating Periods
-    nest: bus_with_longest_period is {
-        group_by: naics_code.Business_Type
-        where: CeaseDate is not null
-        aggregate: avg_period_operating is avg(operation_years)
-        order_by: avg_period_operating desc
-        limit: 3
-    }
-}
-
-
-
-
 
 ## Contributing
 
