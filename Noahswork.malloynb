@@ -70,7 +70,6 @@ run: businesses -> {
         aggregate:
             counted is count()
         where: Commence_Date > @2018 and Commence_Date <= @2022 
-        where
     }
 }
 >>>malloy
