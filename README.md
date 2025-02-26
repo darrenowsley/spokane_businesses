@@ -82,9 +82,9 @@ run: businesses -> {
             aggregate: counteds is count()
         }
     }
-}
+}  ```
 
-Contributing
+## Contributing
 
 Contributions are welcome! If you have suggestions or improvements:
 
