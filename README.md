@@ -84,8 +84,7 @@ run: businesses -> {
     }
 }
 
-
-## Contributing
+### ### Contributing
 
 Contributions are welcome! If you have suggestions or improvements:
 
@@ -106,3 +105,5 @@ For questions or feedback, please contact the repository owner through GitHub.
 ---
 
 *Note: This README is based on the repository structure and available files. For detailed information, refer to the individual notebooks and datasets.* 
+
+
