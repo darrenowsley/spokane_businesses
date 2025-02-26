@@ -1,7 +1,9 @@
 >>>markdown
 
+
 ## Looking at Corporation Types
 >>>malloy
+
 
 --Looking at the spread of Corporation Types
 import "businesses.malloy"
@@ -50,6 +52,7 @@ run: businesses -> {
 }
 >>>malloy
 
+
 --Looking at the data through the covid lense
 # line_chart
 run: businesses -> {
@@ -73,6 +76,7 @@ run: businesses -> {
     }
 }
 >>>malloy
+
 
 run: naics_code -> {
     group_by: Business_Type
