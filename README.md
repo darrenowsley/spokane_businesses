@@ -82,7 +82,8 @@ run: businesses -> {
             aggregate: counteds is count()
         }
     }
-}  ```
+}
+```
 
 ## Contributing
 
