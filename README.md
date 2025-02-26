@@ -87,21 +87,25 @@ run: businesses -> {
 
 ## Contributing
 
-Contributions are welcome! If you have suggestions or improvements:
+Contributions are welcome! If you have suggestions or improvements, follow these steps:
 
-Fork the repository.
-Create a new branch (git checkout -b feature-branch).
-Commit your changes (git commit -m 'Add new feature').
-Push to the branch (git push origin feature-branch).
-Open a pull request.
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+- Fork the repository.  
+- Create a new branch:  
+  ```sh
+  git checkout -b feature-branch
 
-Contact
+
+## License
+
+This project is licensed under the MIT License. See the [`LICENSE`](LICENSE) file for details.
+
+## Contact
+
 For questions or feedback, please contact the repository owner through GitHub.
 
 ---
 
-*Note: This README is based on the repository structure and available files. For detailed information, refer to the individual notebooks and datasets.* 
+*Note: This README is based on the repository structure and available files. For detailed information, refer to the individual notebooks and datasets.*
+
 
 
