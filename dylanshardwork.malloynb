@@ -108,5 +108,3 @@ run: businesses -> {
         limit: 3
     }
 }
->>>malloy
-
