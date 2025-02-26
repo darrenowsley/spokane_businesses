@@ -1,0 +1,149 @@
+>>>markdown
+## Looking at Corporation Types
+>>>malloy
+
+
+source: naics_code is duckdb.table('./naics.csv') extend {
+    rename: Business_Type is title
+    primary_key: ncode
+}
+
+source: businesses is duckdb.table('./SpokaneCounty-Businesses.csv') extend {
+  
+    rename: ctype is `Customer Type`
+
+    dimension: Commence_Date is strptime!date(`Commence Date`, '%b-%d-%Y')
+    dimension: ReOpen_Date is strptime!date(`Reopen Date`, '%b-%d-%Y')
+    dimension: location_city_clean is 
+        pick 'SPOKANE VALLEY' when `Location City` = 'CITY OF SPOKANE VALLEY'
+        pick 'SPOKANE VALLEY' when `Location City` = 'SPOKANE VLY'
+        pick 'SPOKANE VALLEY' when `Location City` = 'SPOKANE VALEY'
+        pick 'SPOKANE VALLEY' when `Location City` = 'SPOKANE VALLELY'
+        pick 'SPOKANE VALLEY' when `Location City` = 'VALLEY'
+        pick 'CHENEY' when `Location City` = 'CHEANEY'
+        pick 'LIBERTY LAKE' when `Location City` = 'LIBERY LAKE'
+        pick 'NINE MILE FALLS' when `Location City` = 'NINE MILE FLS'
+        pick 'FAIRCHILD AIR FORCE BASE' when `Location City` = 'FAIRCHILD AFB'
+        pick 'ELK' when `Location City` = 'ELK, WA.'
+        pick 'SPOKANE' when `Location City` = 'SPOAKNE'
+        pick 'SPOKANE' when `Location City` = 'SPOKEANE'
+        else `Location City`
+
+    
+    measure: naics_count is count()
+
+    join_one: naics_code with NAICS
+}
+>>>markdown
+## Corporation Types Analysis
+>>>malloy
+--Looking at the spread of Corporation Types
+# dashboard
+run: businesses -> {
+    nest: `Companies Grouped by Type` is {
+        group_by: ctype
+        aggregate: counted is count()
+    }
+--Looking at the spread visually
+    # bar_chart
+    nest: `Total Companies Grouped by Type Visually` is {
+        group_by: ctype
+        aggregate: counted is count()
+    }
+
+--Looking at the Corpotation Types by year
+
+    nest: `Corporation Type Counted by Year` is {
+        group_by: ctype
+        aggregate: counted is count()
+        # line_chart {y.independent}
+        nest: corporation_type_by_year is {
+            group_by: Commence_Date.year
+            aggregate: counteds is count()
+        }
+    }
+}
+
+>>>markdown
+## Specific Types of Businesses in Spokane Analysis
+>>>malloy
+--Looking at the specific types of businesses within the CTypes
+#  dashboard
+run: businesses -> {
+    nest: `List of Each Business Type Found Within Each Corporate Type` is {
+        group_by: 
+            ctype
+        nest: Business_Types_by_Ctype is {
+            group_by: naics_code.Business_Type
+            aggregate: counted is count()
+        }
+    }
+
+--Looking at the most common 5 Businesses types within each Ctype
+
+    nest: `Top Five Business Types by Corporate Type Visually` is {
+        group_by: 
+            ctype
+        aggregate: counted is count()
+        # bar_chart {y.independent}
+        nest: `By Year Tooltip` is {
+            group_by: naics_code.Business_Type
+            aggregate: counted is count()
+            limit: 5
+            # tooltip
+            # line_chart {y.independent}
+            nest: dssgls is {
+                group_by: Commence_Date.year
+                aggregate: counted is count()
+            }
+        }
+    }
+}
+>>>markdown
+## Covid Analysis of Spokane Businesses
+>>>malloy
+
+# dashboard
+
+run: businesses -> {
+    # line_chart
+    nest: `All Businesses by Year` is {
+        group_by: 
+            Commence_Date.year
+        aggregate:
+            counted is count()
+        where: Commence_Date > @2016 and Commence_Date <= @2024 
+    }
+
+--Looking for the most failed Business Type from Covid
+    nest: `Businesses Types Over Time` is {
+        group_by: 
+            naics_code.Business_Type
+        aggregate: Counted is count()
+        # line_chart {y.independent size=spark}
+        nest: `Grouped by Year` is {
+            group_by: Commence_Date.year
+            aggregate:
+                Counted is count()
+            where: Commence_Date > @2018 and Commence_Date <= @2022 
+            
+        }
+    }
+
+--Looking at the major 2020 changes that stick out
+--Retailers, Beauty Salons, Residential Remodelers, and Taxi/Ridesharing
+--Services and Restaurants
+    nest: `Focused on Five Business Types That Were Hit Hard by Covid` is {
+        group_by: 
+            naics_code.Business_Type
+        where: naics_code.Business_Type ~ '%Miscellaneous%Retailer%' or naics_code.Business_Type ~ "%Beauty%Salons%" or naics_code.Business_Type ~ "%Residential Remodelers%" or naics_code.Business_Type ~ "%Taxi and Ridesharing Services%" or naics_code.Business_Type ~ "%Restaurants%"
+        aggregate: counted is count()
+        # line_chart {y.independent}
+        nest: `Grouped by Year` is {
+            group_by: Commence_Date.year
+            aggregate:
+                counted is count()
+            where: Commence_Date > @2018 and Commence_Date <= @2022 
+        }
+    }
+}
