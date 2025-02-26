@@ -31,9 +31,26 @@ source: businesses is duckdb.table('./SpokaneCounty-Businesses.csv') extend {
     dimension: outofstate is 
           pick 'Washington' when `Mailing State` = 'WASHINGTON'
           else 'Out of State'
+    
+    dimension:
+        CommenceDate is strptime!date(`Commence Date`,'%b-%d-%Y')
+        CeaseDate is strptime!date(`Cease Date`,'%b-%d-%Y')
+        ReopenDate is strptime!date(ReOpen_Date,'%b-%d-%Y')  
+        Mailing_City is `Mailing City`
+        Mailing_Zip is `Mailing Zip`
+        Mailing_County is `Mailing County`
+    dimension:
+        operation_years is days(CommenceDate to CeaseDate ) / 365
+        operation_years1 is days(ReopenDate to CeaseDate) / 365
 
+    measure: 
+        total_cus_type is count(ctype)
+        total_num_bus is count()
+        reopened_after_closing is count() {Where:ReopenDate is not null }
+        reopened_businesses is count()
     measure: naics_count is count()
-
     join_one: naics_code with NAICS
     join_one: states with `Mailing State`
+
+    dimension: darren is 'test'
 }
