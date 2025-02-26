@@ -1,4 +1,5 @@
 >>>markdown
+
 Business by Spokane County Cities:
 ###### Spokane, being the largest city in the county, is the region's healthcare hub. Spokane has seen an increase in tech startups, software development firms, and IT services. The city is investing in fostering innovation, with resources like the Spokane Entrepreneurial Center and tech incubators. As the central business district, Spokane is home to numerous retail stores, restaurants, and entertainment venues. Tourism has been rising, contributing to the growth of the hospitality sector.
 
@@ -16,6 +17,7 @@ Business by Spokane County Cities:
 
 ###### In the more rural parts of Spokane County, agriculture remains a cornerstone of the economy, with many businesses focused on crop production, livestock, and agribusiness.
 >>>malloy
+
 import "businesses.malloy"
 
 # dashboard

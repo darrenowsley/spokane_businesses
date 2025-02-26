@@ -1,6 +1,8 @@
 >>>malloy
+
 import "businesses.malloy"
 >>>malloy
+
 
 
 run: businesses -> {
@@ -10,8 +12,10 @@ run: businesses -> {
 >>>markdown
 
 
+
 Number and type of businesses by year
 >>>malloy
+
 
 
 run: businesses -> {
@@ -25,8 +29,10 @@ run: businesses -> {
 >>>markdown
 
 
+
 Businesses opened this year by year and business type
 >>>malloy
+
 
 
 run: businesses -> {
@@ -40,8 +46,10 @@ run: businesses -> {
 >>>markdown
 
 
+
 Business trend from 2014 - 2024
 >>>malloy
+
 
 
 run: businesses -> {
@@ -57,8 +65,10 @@ run: businesses -> {
 >>>markdown
 
 
+
 Businesses that reopened
 >>>malloy
+
 
 
 run: businesses -> {
@@ -71,8 +81,10 @@ run: businesses -> {
 }
 >>>markdown
 
+
 Mailing addresses outside of Washington state.
 >>>malloy
+
 
 
 run: businesses -> {
@@ -87,6 +99,7 @@ run: businesses -> {
 >>>malloy
 
 
+
 # line_chart
 run: businesses -> {
     group_by:  Commence_Date.year
@@ -95,8 +108,10 @@ run: businesses -> {
 }
 >>>markdown
 
+
 Business types by Location City (only WA)
 >>>malloy
+
 
 run: businesses -> {
     group_by: location_city_clean
@@ -108,3 +123,9 @@ run: businesses -> {
         limit: 3
     }
 }
+<<<<<<< HEAD
+=======
+>>>malloy
+
+
+>>>>>>> 948fe7b626316a954d1c1e938a56bf1fe531d8b5
