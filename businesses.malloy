@@ -49,11 +49,11 @@ source: businesses is duckdb.table('./SpokaneCounty-Businesses.csv') extend {
         reopened_after_closing is count() {Where:ReopenDate is not null }
         reopened_businesses is count()
         naics_count is count()
-        
+
     join_one: naics_code with NAICS
     join_one: states with `Mailing State`
 
-    view: business_by_customer_type is {
+    view: business_by_legal_status is {
         group_by: `Legal Status` is ctype
         aggregate: `Total Businesses` is total_num_bus
         # percent
@@ -93,5 +93,18 @@ source: businesses is duckdb.table('./SpokaneCounty-Businesses.csv') extend {
         aggregate: `Total Businesses` is total_num_bus
         # percent
         `%` is all(total_num_bus,`Year Established`) / all(total_num_bus)  
+    }
+
+    view: businesses_by_type is {
+        group_by:  `Business Type` is naics_code.Business_Type
+        aggregate: `Businesses Opened` is naics_count
+        # percent
+        `%` is all(total_num_bus,`Business Type`) / all(total_num_bus)  
+    }
+
+    view: businesses_by_commence_date is {
+        group_by: `Business Type` is naics_code.Business_Type, Commence_Date
+        order_by: Commence_Date
+        limit: 500000
     }
 }
