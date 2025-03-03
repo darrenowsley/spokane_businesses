@@ -1,13 +1,13 @@
-source: naics_code is duckdb.table('./naics.csv') extend {
+source: naics_code is duckdb.table('./datasets/naics.csv') extend {
     rename: Business_Type is title
     primary_key: ncode
 }
 
-source: states is duckdb.table('./states.csv') extend {
+source: states is duckdb.table('./datasets/states.csv') extend {
     primary_key: ustate
 }
 
-source: businesses is duckdb.table('./SpokaneCounty-Businesses.csv') extend {
+source: businesses is duckdb.table('./datasets/SpokaneCounty-Businesses.csv') extend {
   
     rename: ctype is `Customer Type`
 
@@ -35,7 +35,7 @@ source: businesses is duckdb.table('./SpokaneCounty-Businesses.csv') extend {
     dimension:
         CommenceDate is strptime!date(`Commence Date`,'%b-%d-%Y')
         CeaseDate is strptime!date(`Cease Date`,'%b-%d-%Y')
-        ReopenDate is strptime!date(ReOpen_Date,'%b-%d-%Y')  
+        ReopenDate is strptime!date(`Reopen Date`,'%b-%d-%Y')  
         YearOpened is CommenceDate.year
         Mailing_City is `Mailing City`
         Mailing_Zip is `Mailing Zip`
