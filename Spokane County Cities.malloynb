@@ -1,5 +1,6 @@
 >>>markdown
 
+
 Business by Spokane County Cities:
 ###### Spokane, being the largest city in the county, is the region's healthcare hub. Spokane has seen an increase in tech startups, software development firms, and IT services. The city is investing in fostering innovation, with resources like the Spokane Entrepreneurial Center and tech incubators. As the central business district, Spokane is home to numerous retail stores, restaurants, and entertainment venues. Tourism has been rising, contributing to the growth of the hospitality sector.
 
@@ -17,6 +18,7 @@ Business by Spokane County Cities:
 
 ###### In the more rural parts of Spokane County, agriculture remains a cornerstone of the economy, with many businesses focused on crop production, livestock, and agribusiness.
 >>>malloy
+
 
 import "businesses.malloy"
 
@@ -56,7 +58,7 @@ run: businesses -> {
     }
 
     nest: `LLCs are popular in Spokane, Washington, because they offer liability protection, flexibility in management and taxation, and are easy to form and maintain. With Washington's lack of individual income tax, LLC owners benefit from pass-through taxation. The state's business-friendly environment and Spokane's growing entrepreneurial ecosystem make LLCs ideal for small businesses and startups. Additionally, LLCs are commonly used in Spokane’s real estate sector to protect personal assets while managing properties.` is {
-        group_by:  `Business Type` is ctype
+        group_by:  `Legal Status` is ctype
         aggregate: `Count` is naics_count
     }
 }
