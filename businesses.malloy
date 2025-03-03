@@ -90,9 +90,10 @@ source: businesses is duckdb.table('./SpokaneCounty-Businesses.csv') extend {
 
     view: business_by_year is {
         group_by: `Year Established` is YearOpened
-        aggregate: `Total Businesses` is total_num_bus
+        aggregate: `Total Businesses` is total_num_bus,
         # percent
         `%` is all(total_num_bus,`Year Established`) / all(total_num_bus)  
+        calculate: `Annual Change` is (total_num_bus - lag(total_num_bus))
     }
 
     view: businesses_by_type is {
