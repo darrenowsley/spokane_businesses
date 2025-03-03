@@ -36,10 +36,10 @@ source: businesses is duckdb.table('./SpokaneCounty-Businesses.csv') extend {
         CommenceDate is strptime!date(`Commence Date`,'%b-%d-%Y')
         CeaseDate is strptime!date(`Cease Date`,'%b-%d-%Y')
         ReopenDate is strptime!date(ReOpen_Date,'%b-%d-%Y')  
+        YearOpened is CommenceDate.year
         Mailing_City is `Mailing City`
         Mailing_Zip is `Mailing Zip`
         Mailing_County is `Mailing County`
-    dimension:
         operation_years is days(CommenceDate to CeaseDate ) / 365
         operation_years1 is days(ReopenDate to CeaseDate) / 365
 
@@ -48,9 +48,50 @@ source: businesses is duckdb.table('./SpokaneCounty-Businesses.csv') extend {
         total_num_bus is count()
         reopened_after_closing is count() {Where:ReopenDate is not null }
         reopened_businesses is count()
-    measure: naics_count is count()
+        naics_count is count()
+        
     join_one: naics_code with NAICS
     join_one: states with `Mailing State`
 
-    dimension: darren is 'test'
+    view: business_by_customer_type is {
+        group_by: `Legal Status` is ctype
+        aggregate: `Total Businesses` is total_num_bus
+        # percent
+        `%` is all(total_num_bus,`Legal Status`) / all(total_num_bus)  
+    }
+
+    view: business_by_mailing_address_state is {
+        group_by: `Mailing State`
+        aggregate: `Total Businesses` is total_num_bus
+        # percent
+        `%` is all(total_num_bus,`Mailing State`) / all(total_num_bus)  
+    }
+
+    view: business_by_business_address_state is {
+        group_by: `Location State`
+        aggregate: `Total Businesses` is total_num_bus
+        # percent
+        `%` is all(total_num_bus,`Location State`) / all(total_num_bus)  
+    }
+
+    view: business_by_mailing_address_city is {
+        group_by: `Mailing City`
+        aggregate: `Total Businesses` is total_num_bus
+        # percent
+        `%` is all(total_num_bus,`Mailing City`) / all(total_num_bus)  
+    }
+
+    view: business_by_business_address_city is {
+        group_by: `Location City`
+        aggregate: `Total Businesses` is total_num_bus
+        # percent
+        `%` is all(total_num_bus,`Location City`) / all(total_num_bus)  
+    }
+
+    view: business_by_year is {
+        group_by: `Year Established` is YearOpened
+        aggregate: `Total Businesses` is total_num_bus
+        # percent
+        `%` is all(total_num_bus,`Year Established`) / all(total_num_bus)  
+    }
 }
