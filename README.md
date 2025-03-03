@@ -13,6 +13,7 @@ The data covers a timespan for businesses that commenced between 1905 – 2025.
   - `states.csv`: Information about U.S. states.
   
 - **Analysis Scripts**:
+  - `businesses.malloy`: Has all the sources used in this repository and views that can be used to filter for querying. 
   - `spokane_businesses.malloynb`: Main analysis notebook for exploring Spokane businesses.
   - `Corporations Businesses and Covid.malloynb`: Analysis of corporations, businesses, and COVID-19 impacts.
   - `NonWashingtonBusinesses.malloynb`: Examination of businesses outside Washington state.
