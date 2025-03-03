@@ -34,12 +34,6 @@ Once on Github, click Shift + period this will load the web editor. Then install
 | `Step 5 - Press Run` | <img src="step5.png" width="50%"> |
 
 
-2. **Install Dependencies**:
-   Ensure you have the necessary tools to run `.malloynb` notebooks. Malloy is a data modeling language; you'll need the appropriate environment to execute these notebooks.
-
-3. **Run the Notebooks**:
-   Open and run the `.malloynb` notebooks using your preferred environment to reproduce the analyses.
-
 ## Summary of findings
 
 This project analyzes business trends focusing on:
