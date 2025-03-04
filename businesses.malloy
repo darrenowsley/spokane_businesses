@@ -114,5 +114,8 @@ source: businesses is duckdb.table('./datasets/SpokaneCounty-Businesses.csv') ex
 
     view: business_types is {
         group_by: `Business Code` is naics_code.ncode, `Business Description` is naics_code.Business_Type,
+        aggregate: `Count` is naics_count
+        aggregate: `Average Years in Business` is avg(days(CommenceDate to CeaseDate ) / 365)
+        limit: 50000
     }
 }
