@@ -47,7 +47,7 @@ run: businesses -> {
     where: CeaseDate is not null
 } 
 >>>markdown
-### What is the most common Mailing_City, Zip and County?
+### 6. What is the most common Mailing_City, Zip and County?
 >>>malloy
 run: businesses -> {
     group_by: Mailing_City, Mailing_Zip, Mailing_County
@@ -56,14 +56,14 @@ run: businesses -> {
    limit:1
 } 
 >>>markdown
-### How many unique NAICS codes are present?
+### 7. How many unique NAICS codes are present?
 >>>malloy
 run: businesses -> {
     aggregate: unique_naics is count()
 
 } 
 >>>markdown
-### What is the most frequently occurring NAICS_description?
+### 8. What is the most frequently occurring NAICS_description?
 >>>malloy
 # bar_chart
 run: businesses -> {
@@ -72,7 +72,7 @@ run: businesses -> {
     limit: 5
 }
 >>>markdown
-### which City has most businesses that are currently open? And frequently occurring NAICS_description?
+### 9. which City has most businesses that are currently open? And frequently occurring NAICS_description?
 >>>malloy
 run: businesses -> {
     where:CeaseDate is null
@@ -85,7 +85,7 @@ run: businesses -> {
     }
 }
 >>>markdown
-### What is the most common customer type?
+### 10. What is the most common customer type?
 >>>malloy
 run: businesses -> {
     group_by: Customer is ctype
@@ -93,14 +93,14 @@ run: businesses -> {
    
 }
 >>>markdown
-### What is the average operation time for businesses that cease?
+### 11. What is the average operation time for businesses that cease?
 >>>malloy
 run: businesses -> {
     where:CeaseDate is not null
     aggregate: avg_operating_time is avg(operation_years) 
 }
 >>>markdown
-### Which businesses have been in operation for the longest period?
+### 12. Which businesses have been in operation for the longest period?
 >>>malloy
 run: businesses -> {
     group_by: City is `Mailing City`
@@ -115,7 +115,7 @@ run: businesses -> {
         }
 }
 >>>markdown
-### Which city, county, state has the highest number of active businesses?
+### 13. Which city, county, state has the highest number of active businesses?
 >>>malloy
 run: businesses -> {
     group_by: `City` is `Location City`, County is `Location County`
@@ -123,7 +123,7 @@ run: businesses -> {
     where: CeaseDate is not null
 } 
 >>>markdown
-### How many businesses are registered under each Code_type?
+### 14. How many businesses are registered under each Code_type?
 >>>malloy
 run: businesses -> {
     group_by:naics_code.Business_Type
@@ -132,7 +132,7 @@ run: businesses -> {
    
 } 
 >>>markdown
-### What are the top 5 NAICS codes with the most businesses?
+### 15. What are the top 5 NAICS codes with the most businesses?
 >>>malloy
 run: businesses -> {
     group_by: naics_code.Business_Type
@@ -141,7 +141,7 @@ run: businesses -> {
     limit:5
 }  
 >>>markdown
-### How many businesses ceased operations within 1 year of commencing?
+### 16. How many businesses ceased operations within 1 year of commencing?
 >>>malloy
 run: businesses -> {
     group_by:Customer is ctype
@@ -150,7 +150,7 @@ run: businesses -> {
     
     }
 >>>markdown
-### What is the total number of businesses in each NAICS_Code as a percentage of total businesses?
+### 17. What is the total number of businesses in each NAICS_Code as a percentage of total businesses?
 >>>malloy
 run: businesses -> {
     where: CeaseDate is null 
@@ -164,7 +164,7 @@ run: businesses -> {
  
 } 
 >>>markdown
-30. How does the number of businesses in Spokane compare before and after the COVID-19 pandemic, based on different locations (city, zip code)?
+### 18. How does the number of businesses in Spokane compare before and after the COVID-19 pandemic, based on different locations (city, zip code)?
 >>>malloy
 run: businesses -> {
  
@@ -189,7 +189,7 @@ group_by: City is `Location City`, Zip is `Location Zip`, State is `Location Sta
  
 }
 >>>markdown
-Which customer type has the highest number of reopened businesses?
+### 19. Which customer type has the highest number of reopened businesses?
 >>>malloy
 run: businesses -> {
     group_by: Customer is ctype, `Mailing Zip` is `Mailing Zip`, ReOpen_Date
