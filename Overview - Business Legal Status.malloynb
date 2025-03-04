@@ -1,74 +1,31 @@
->>>markdown
-## Looking at Corporation Types
 >>>malloy
-import "businesses.malloy"
->>>markdown
-## Corporation Types Analysis
+import "Businesses.malloy"
 >>>malloy
---Looking at the spread of Corporation Type
 # dashboard
 run: businesses -> {
-    nest: `Companies Grouped by Type` is {
-        group_by: ctype
-        aggregate: counted is count()
-    }
---Looking at the spread visually
-    # bar_chart
-    nest: `Total Companies Grouped by Type Visually` is {
-        group_by: ctype
-        aggregate: counted is count()
-    }
-
---Looking at the Corpotation Types by year
-
-    nest: `Corporation Type Counted by Year` is {
-        group_by: ctype
-        aggregate: counted is count()
+    nest: `In Spokane County, the majority of businesses are organized as Limited Liability Companies (LLCs), with 46,439 businesses falling under this structure. Close behind are individual businesses, accounting for 42,542 entities. Corporations represent 16,037 businesses, while nonprofit corporations make up 3,061 businesses. Other legal structures are less common, with 1,367 businesses categorized as partnerships, 284 as associations, and 206 as Limited Liability Partnerships (LLPs). Limited Partnerships (LPs) number 188, and municipalities account for 183 businesses. Bank corporations and trusts are less frequent, with 135 and 88 businesses, respectively. Joint ventures are represented by 68 businesses, and Limited Liability Limited Partnerships (LLLPs) and Tenants in Common each comprise a smaller share, with 47 and 19 businesses, respectively. Overall, LLCs and individual businesses dominate the business landscape in Spokane County, with other legal forms making up a smaller portion.` is {
+        group_by: `Legal Status` is ctype
+        aggregate: `#` is count()
         # line_chart {y.independent}
         nest: corporation_type_by_year is {
             group_by: Commence_Date.year
             aggregate: counteds is count()
         }
     }
-}
 
->>>markdown
-## Specific Types of Businesses in Spokane Analysis
->>>malloy
---Looking at the specific types of businesses within the CTypes
-#  dashboard
-run: businesses -> {
-    nest: `List of Each Business Type Found Within Each Corporate Type` is {
-        group_by: 
-            ctype
-        nest: Business_Types_by_Ctype is {
+    nest: `Percentage by Legal Status` is business_by_legal_status
+
+    nest: `Legal Staus by Business type` is {
+        group_by: `Legal Status` is ctype
+        nest: ` ` is {
             group_by: naics_code.Business_Type
-            aggregate: counted is count()
-        }
-    }
-
---Looking at the most common 5 Businesses types within each Ctype
-
-    nest: `Top Five Business Types by Corporate Type Visually` is {
-        group_by: 
-            ctype
-        aggregate: counted is count()
-        # bar_chart {y.independent}
-        nest: `By Year Tooltip` is {
-            group_by: naics_code.Business_Type
-            aggregate: counted is count()
-            limit: 5
-            # tooltip
-            # line_chart {y.independent}
-            nest: dssgls is {
-                group_by: Commence_Date.year
-                aggregate: counted is count()
-            }
+            aggregate: `#` is count()
         }
     }
 }
+
 >>>markdown
-## Covid Analysis of Spokane Businesses
+##### Covid Analysis of Spokane Businesses
 >>>malloy
 
 # dashboard

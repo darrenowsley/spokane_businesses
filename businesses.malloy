@@ -58,6 +58,8 @@ source: businesses is duckdb.table('./datasets/SpokaneCounty-Businesses.csv') ex
         aggregate: `Total Businesses` is total_num_bus
         # percent
         `%` is all(total_num_bus,`Legal Status`) / all(total_num_bus)  
+        aggregate: `Average Years in Business` is avg(days(CommenceDate to CeaseDate ) / 365)
+    
     }
 
     view: business_by_mailing_address_state is {
@@ -101,11 +103,16 @@ source: businesses is duckdb.table('./datasets/SpokaneCounty-Businesses.csv') ex
         aggregate: `Businesses Opened` is naics_count
         # percent
         `%` is all(total_num_bus,`Business Type`) / all(total_num_bus)  
+        aggregate: `Average Years in Business` is avg(days(CommenceDate to CeaseDate ) / 365)
     }
 
     view: businesses_by_commence_date is {
         group_by: `Business Type` is naics_code.Business_Type, Commence_Date
         order_by: Commence_Date
         limit: 500000
+    }
+
+    view: business_types is {
+        group_by: `Business Code` is naics_code.ncode, `Business Description` is naics_code.Business_Type,
     }
 }

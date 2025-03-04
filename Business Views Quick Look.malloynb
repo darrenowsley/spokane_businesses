@@ -1,0 +1,29 @@
+>>>malloy
+import "./businesses.malloy"
+>>>malloy
+#Businesses codes and desciptions
+run: businesses ->  business_types
+
+#Businesses by legal Status
+run: businesses -> business_by_legal_status 
+
+#Businesses by mailing state
+run: businesses -> business_by_mailing_address_state 
+
+#Businesses by business state
+run: businesses ->  business_by_business_address_state
+
+#Businesses by mailing city
+run: businesses ->  business_by_mailing_address_city 
+
+#Businesses by business city
+run: businesses ->  business_by_business_address_city
+
+#Businesses opened by year, annual change
+run: businesses ->  business_by_year 
+
+#Businesses by business type
+run: businesses ->  businesses_by_type 
+
+#Businesses by commence date
+run: businesses ->  businesses_by_commence_date

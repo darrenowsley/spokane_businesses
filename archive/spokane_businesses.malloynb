@@ -1,6 +1,6 @@
 >>>malloy
 
-import "businesses.malloy"
+import "Businesses.malloy"
 >>>markdown
 ### 1. How many customer types are in the data set?
 >>>malloy

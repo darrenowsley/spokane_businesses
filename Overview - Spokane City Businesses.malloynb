@@ -20,7 +20,7 @@ Business by Spokane County Cities:
 >>>malloy
 
 
-import "businesses.malloy"
+import "Businesses.malloy"
 
 # dashboard
 run: businesses -> {
