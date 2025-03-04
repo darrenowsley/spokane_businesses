@@ -1,5 +1,5 @@
 >>>malloy
-import "Businesses.malloy"
+import "./businesses.malloy"
 >>>malloy
 # dashboard
 run: businesses -> {

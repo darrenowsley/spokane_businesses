@@ -12,7 +12,7 @@ Business-Friendly Environment:
 
 ###### In summary, Washington’s tax policies, proximity to major markets, and supportive regulatory environment make it an attractive place for businesses from neighboring states like California and Idaho to register.
 >>>malloy
-import "businesses.malloy"
+import "./businesses.malloy"
 
 # dashboard
 run: businesses -> {
