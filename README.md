@@ -19,22 +19,6 @@ The data covers a timespan for businesses that commenced between 1905 – 2025.
   - `NonWashingtonBusinesses.malloynb`: Examination of businesses outside Washington state.
   - `Spokane County Cities.malloynb`: Analysis focusing on cities within Spokane County.
 
-
-   # How to Open a Shared GitHub File and Run Malloy Code
-To explore the data and run the analyses:
-
-Click on the (https://github.com/darrenowsley/spokane_businesses.git) provided to access the shared repository or file. 
-
-Once on Github, click Shift + period this will load the web editor. Then install the malloy extension. See images below for reference:
-| **Step**   | **Image Preview** |
-|--------|-----------|
-| `Step 1 - Press allow` | <img src="./images/step1.png" width="50%"> |
-| `Step 2 - Click the Blocks, search for Malloy, install` | <img src="./images/step2.png" width="50%"> |
-| `Step 3 - Click Trust` | <img src="./images/step3.png" width="50%"> |
-| `Step 4 - Click a .malloynb file` | <img src="./images/step4.png" width="50%"> |
-| `Step 5 - Press Run` | <img src="./images/step5.png" width="50%"> |
-
-
 ## Summary of findings
 
 This project analyzes business trends focusing on:
@@ -53,6 +37,23 @@ Ownership structure distribution
 Geographic distribution of businesses
 
 Business longevity and failure rates
+
+
+   # How to Open a Shared GitHub File and Run Malloy Code
+To explore the data and run the analyses:
+
+Click on the (https://github.com/darrenowsley/spokane_businesses.git) provided to access the shared repository or file. 
+
+Once on Github, click Shift + period this will load the web editor. Then install the malloy extension. See images below for reference:
+| **Step**   | **Image Preview** |
+|--------|-----------|
+| `Step 1 - Press allow` | <img src="./images/step1.png" width="50%"> |
+| `Step 2 - Click the Blocks, search for Malloy, install` | <img src="./images/step2.png" width="50%"> |
+| `Step 3 - Click Trust` | <img src="./images/step3.png" width="50%"> |
+| `Step 4 - Click a .malloynb file` | <img src="./images/step4.png" width="50%"> |
+| `Step 5 - Press Run` | <img src="./images/step5.png" width="50%"> |
+
+
 
 # 1 Corporation Type & Business Longevity Analysis
 
