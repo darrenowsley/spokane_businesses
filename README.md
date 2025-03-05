@@ -38,6 +38,8 @@ City Trend - In the 1990s, Spokane began to see a diversification of its economy
 Effects of economic crisis e.g COVID-19 on businesses
 
 Ownership structure distribution
+In Spokane County, the majority of businesses are organized as Limited Liability Companies (LLCs), with 46,439 businesses falling under this structure. Close behind are individual businesses, accounting for 42,542 entities. Corporations represent 16,037 businesses, while nonprofit corporations make up 3,061 businesses. Other legal structures are less common, with 1,367 businesses categorized as partnerships, 284 as associations, and 206 as Limited Liability Partnerships (LLPs). Limited Partnerships (LPs) number 188, and municipalities account for 183 businesses. Bank corporations and trusts are less frequent, with 135 and 88 businesses, respectively. Joint ventures are represented by 68 businesses, and Limited Liability Limited Partnerships (LLLPs) and Tenants in Common each comprise a smaller share, with 47 and 19 businesses, respectively. Overall, LLCs and individual businesses dominate the business landscape in Spokane County, with other legal forms making up a smaller portion.
+![LegalStatus](BusnbyLegalStatus.png)
 
 Geographic distribution of businesses
 
