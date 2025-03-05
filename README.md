@@ -43,10 +43,12 @@ In Spokane County, the majority of businesses are organized as Limited Liability
 
 ![LegalStatus](https://github.com/darrenowsley/spokane_businesses/blob/main/images/BusnbyLegalStatus.png)
 
+The image illustrates how to use the "View" feature to filter specific data. In this example, the "View by Business_Types" was applied and filtered to show only Beauty Salons. To gain further insights, a nested view—"View by Legal Status"—was added, refining the data to display only Beauty Salons that opened between 2022 and 2024. 
 
-![Beauty Salon Code](https://github.com/darrenowsley/spokane_businesses/blob/main/images/BeuatySalonsMalloy.png)
+![Beauty Salons Malloy](https://github.com/darrenowsley/spokane_businesses/blob/main/images/BeautySalonsMalloy.png?raw=true)
 
 
+Below are the results for the code above, showing a total of 79 beauty salons opened in 2022 - 2024 by their legal status and their percentage to total businesses. 
 
 
 
