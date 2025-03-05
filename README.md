@@ -41,7 +41,8 @@ This project analyzes business trends focusing on:
 
 Business openings and closures over 
 City Trend - In the 1990s, Spokane began to see a diversification of its economy, with a particular focus on the tech and healthcare industries. The expansion of institutions like Providence Health and Spokane's emergence as a regional hub for healthcare services attracted new businesses in the health sector.
-![CityTrend]("images/CityTrend.png")
+![CityTrend](https://github.com/darrenowsley/spokane_businesses/blob/main/images/CityTrend.png?raw=true)
+
 
 Effects of economic crisis e.g COVID-19 on businesses
 
