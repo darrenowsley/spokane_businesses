@@ -44,7 +44,7 @@ In Spokane County, the majority of businesses are organized as Limited Liability
 ![LegalStatus](https://github.com/darrenowsley/spokane_businesses/blob/main/images/BusnbyLegalStatus.png)
 
 
-<img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/beautysalon.png" width="50%" />
+<img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/beautysalon.png" width="75%" />
 
 
 Geographic distribution of businesses
