@@ -5,6 +5,11 @@ This repository contains data and analysis related to businesses in Spokane Coun
 Years covered
 The data covers a timespan for businesses that commenced between 1905 – 2025.
 
+## Motivation
+
+This data analysis allows one to see what kinds of businesses are in Spokane. It helps paint a picture of which sectors are thriving, how long businesses tend to remain active, and how frequently they change ownership or location. Understanding these patterns is not only essential for city planners and economic developers but also for entrepreneurs deciding whether to open a new venture in the region.
+
+
 ## Repository Contents
 
 - **Datasets**:
