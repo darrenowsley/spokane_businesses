@@ -27,3 +27,10 @@ run: businesses ->  businesses_by_type
 
 #Businesses by commence date
 run: businesses ->  businesses_by_commence_date
+>>>malloy
+run: businesses ->  businesses_by_commence_date + {where: Commence_Date = @1905}
+>>>malloy
+run: businesses ->  businesses_by_type +  {where: naics_code.Business_Type ~ '%Beaut%'} +{
+where: Commence_Date.year > @2022 and Commence_Date.year < @2024} + {
+nest:business_by_legal_status
+}

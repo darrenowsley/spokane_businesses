@@ -102,7 +102,7 @@ source: businesses is duckdb.table('./datasets/SpokaneCounty-Businesses.csv') ex
         group_by:  `Business Type` is naics_code.Business_Type
         aggregate: `Businesses Opened` is naics_count
         # percent
-        `%` is all(total_num_bus,`Business Type`) / all(total_num_bus)  
+        `% of Total Businesses` is all(total_num_bus,`Business Type`) / all(total_num_bus)  
         aggregate: `Average Years in Business` is avg(days(CommenceDate to CeaseDate ) / 365)
     }
 
