@@ -1,7 +1,9 @@
 # Spokane Businesses
 
 This repository contains data and analysis related to businesses in Spokane County, Washington. The project includes datasets and scripts for exploring business information, classifications, and the impact of COVID-19 on local enterprises.It helps paint a picture of which sectors are thriving, how long businesses tend to remain active, and how frequently they change ownership or location. Understanding these patterns is not only essential for city planners and economic developers but also for entrepreneurs deciding whether to open a new venture in the region.
+
 <img src="./images/openedbyyear.png" width="50%">
+
 Years covered
 The data covers a timespan for businesses that commenced between 1905 – 2025.
 
