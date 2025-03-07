@@ -36,8 +36,8 @@ City Trend - In the 1990s, Spokane began to see a diversification of its economy
 
 <table>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/cityspokane.png" width="300px" /></td>
-    <td><img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/citynonspokane.png" width="300px" /></td>
+    <td><img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/cityspokane.png" width="400px" /></td>
+    <td><img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/citynonspokane.png" width="400px" /></td>
   </tr>
 </table>
 
