@@ -14,17 +14,17 @@ This data analysis allows one to see what kinds of businesses are in Spokane. It
 
 ## Repository Contents
 
-- **Datasets**:
-  - `SpokaneCounty-Businesses.csv`: A dataset of businesses located in Spokane County.
-  - `naics.csv`: North American Industry Classification System (NAICS) codes and descriptions.
-  - `states.csv`: Information about U.S. states.
+- **📊 Datasets**:
+  - 🗂️ `SpokaneCounty-Businesses.csv`: A dataset of businesses located in Spokane County.
+  - 👤 `naics.csv`: North American Industry Classification System (NAICS) codes and descriptions.
+  - 🇺🇸 `states.csv`: Information about U.S. states.
   
-- **Analysis Scripts**:
-  - `businesses.malloy`: Has all the sources used in this repository and views that can be used to filter for querying. 
-  - `Bueiness Views Quick Look.malloynb`: Views of the dataset to utilize for quick analysis.
-  - `Overview - Business Legal Status.malloynb`: Analysis of corporations, businesses, and COVID-19 impacts.
-  - `Overview - Registered businesses with Non WA Addresses.malloynb`: Examination of businesses outside Washington state.
-  - `Overview - Spokane City Businesses.malloynb`: Analysis focusing on cities within Spokane County.
+- **📄 Analysis Scripts**:
+  - 📄 `businesses.malloy`: Has all the sources used in this repository and views that can be used to filter for querying. 
+  - 📝 `Business Views Quick Look.malloynb`: Views of the dataset to utilize for quick analysis.
+  - 🏦 `Overview - Business Legal Status.malloynb`: Analysis of corporations, businesses, and COVID-19 impacts.
+  - 🌍 `Overview - Registered businesses with Non-WA Addresses.malloynb`: Examination of businesses outside Washington state.
+  - 🏙️ `Overview - Spokane City Businesses.malloynb`: Analysis focusing on cities within Spokane County.
 
 ## Summary of Findings
 
@@ -87,7 +87,7 @@ Once on Github, click Shift + period this will load the web editor. Then install
 
 
 
-# 1 Corporation Type & Business Longevity Analysis
+## Corporation Type & Business Longevity Analysis
 
 This dashboard provides insights into the distribution of corporation types, their visual representation, and trends over the years, along with an analysis of businesses with the longest operating periods.
 
