@@ -21,10 +21,10 @@ This data analysis allows one to see what kinds of businesses are in Spokane. It
   
 - **Analysis Scripts**:
   - `businesses.malloy`: Has all the sources used in this repository and views that can be used to filter for querying. 
-  - `spokane_businesses.malloynb`: Main analysis notebook for exploring Spokane businesses.
-  - `Corporations Businesses and Covid.malloynb`: Analysis of corporations, businesses, and COVID-19 impacts.
-  - `NonWashingtonBusinesses.malloynb`: Examination of businesses outside Washington state.
-  - `Spokane County Cities.malloynb`: Analysis focusing on cities within Spokane County.
+  - `Bueiness Views Quick Look.malloynb`: Views of the dataset to utilize for quick analysis.
+  - `Overview - Business Legal Status.malloynb`: Analysis of corporations, businesses, and COVID-19 impacts.
+  - `Overview - Registered businesses with Non WA Addresses.malloynb`: Examination of businesses outside Washington state.
+  - `Overview - Spokane City Businesses.malloynb`: Analysis focusing on cities within Spokane County.
 
 ## Summary of Findings
 
