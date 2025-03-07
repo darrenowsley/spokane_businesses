@@ -34,8 +34,12 @@ Business openings and closures over
 City Trend - In the 1990s, Spokane began to see a diversification of its economy, with a particular focus on the tech and healthcare industries. The expansion of institutions like Providence Health and Spokane's emergence as a regional hub for healthcare services attracted new businesses in the health sector.
 
 
-![CityTrend](https://github.com/darrenowsley/spokane_businesses/blob/main/images/CityTrend.png?raw=true)
-
+<table>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/cityspokane.png" width="300px" /></td>
+    <td><img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/citynonspokane.png" width="300px" /></td>
+  </tr>
+</table>
 
 Effects of economic crisis e.g COVID-19 on businesses
 
@@ -60,9 +64,12 @@ The results from the code above show a total of 159 Beauty Salons that opened be
 
 Washington is known for its favorable business climate, including no state income tax. This can be very appealing for businesses from neighboring states like California and Idaho, where taxes might be higher. Companies might choose to register in Washington to take advantage of these tax benefits.
 
-<img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/state.png" width="200px" />
-<img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/statedensity.png" width="400px" />
-
+<table>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/state.png" width="200px" /></td>
+    <td><img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/statedensity.png" width="400px" /></td>
+  </tr>
+</table>
 
    # How to Open a Shared GitHub File and Run Malloy Code
 To explore the data and run the analyses:
