@@ -26,7 +26,7 @@ This data analysis allows one to see what kinds of businesses are in Spokane. It
   - `NonWashingtonBusinesses.malloynb`: Examination of businesses outside Washington state.
   - `Spokane County Cities.malloynb`: Analysis focusing on cities within Spokane County.
 
-## Summary of findings
+## Summary of Findings
 
 This project analyzes business trends focusing on:
 
