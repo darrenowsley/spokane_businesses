@@ -60,7 +60,7 @@ The results from the code above show a total of 159 Beauty Salons that opened be
 
 Washington is known for its favorable business climate, including no state income tax. This can be very appealing for businesses from neighboring states like California and Idaho, where taxes might be higher. Companies might choose to register in Washington to take advantage of these tax benefits.
 
-<img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/state.png" width="400px" />
+<img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/state.png" width="200px" />
 <img src="https://raw.githubusercontent.com/darrenowsley/spokane_businesses/main/images/statedensity.png" width="400px" />
 
 
